@@ -78,7 +78,7 @@ Mostrar "Escribir los datos (Edad, Peso):"
 
 Leer Edad, Leer Peso.
 
-Mostrar "Tu peso es: ", peso, "Tu edad es: ", edad.
+Mostrar "Tu peso es: ", peso, ", tu edad es: ", edad.
 
 Fin.
 
@@ -92,7 +92,7 @@ Prvwudu "Hvfulelu orv gdwrv (Hgdg, Shvr):"
 
 Ohhu Hgdg, Ohhu Shvr.
 
-Prvwudu "Wx shvr hv: ", shvr, "Wx hgdg hv: ", hgdg.
+Prvwudu "Wx shvr hv: ", shvr, ", Wx hgdg hv: ", hgdg.
 
 Ilq.
 */
