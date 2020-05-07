@@ -5,8 +5,8 @@ using namespace std;
 
 void cifrar(string texto){
     
-    for (int i=0;i<texto.length();i++){
-        if(texto[i]>='a' && texto[i]<='z' || texto[i]>='A' && texto[i]<='Z' ){
+    for (int i = 0; i < texto.length(); i++){
+        if(texto[i] >= 'a' && texto[i] <= 'z' || texto[i] >= 'A' && texto[i] <= 'Z' ){
             texto[i]+=3;
             cout<<texto[i];
         }
@@ -17,9 +17,9 @@ void cifrar(string texto){
 }
 
 void descifrar(string texto){
-    for (int i=0;i<texto.length();i++){
-        if(texto[i]>='a' && texto[i]<='z' || texto[i]>='A' && texto[i]<='Z' ){
-            texto[i]-=3;
+    for (int i = 0; i < texto.length(); i++){
+        if(texto[i] >= 'a' && texto[i] <= 'z' || texto[i] >= 'A' && texto [i]<= 'Z' ){
+            texto[i] -= 3;
             cout<<texto[i];
         }
         else
@@ -43,7 +43,7 @@ int main() {
     switch (opc)
     {
         case 1:
-            cout<<":::::::::::Pseudocodigo cifrado:::::::::::"<<endl;
+            cout<<":::::::::::PSEUDOCODIGO CIFRADO:::::::::::"<<endl;
             cout<<endl;
             while(!archivo.eof()){//mientras no sea el final
                 getline(archivo,texto);
@@ -53,7 +53,7 @@ int main() {
             break;
         
         default:
-            cout<<":::::::::::Pseudocodigo descifrado:::::::::::"<<endl;
+            cout<<":::::::::::PSEUDOCODIGO DESCIFRADO:::::::::::"<<endl;
             cout<<endl;
             while(!archivo.eof()){//mientras no sea el final
                 getline(archivo,texto);
@@ -65,34 +65,28 @@ int main() {
     return 0;
 }
 /*
+
 Pseudocódigo de un programa que permita leer la edad
 y peso de una persona y posteriormente imprimirla.
 
-:::::::::::::::SIN CIFRAR::::::::::::::::
+TEXTO PLANO SIN CIFRAR
 
+:::::::::::::::compilar.txt::::::::::::::::
 Inicio
-
 Variables edad, peso.
-
 Mostrar "Escribir los datos (Edad, Peso):"
-
 Leer Edad, Leer Peso.
-
 Mostrar "Tu peso es: ", peso, ", tu edad es: ", edad.
-
 Fin.
 
-::::::::::::::::CIFRADO:::::::::::::::::::::
+TEXTO PLANO CIFRADO
 
+:::::::::::::::compilar.txt::::::::::::::::
 Lqlflr
-
 Yduldeohv hgdg, shvr.
-
 Prvwudu "Hvfulelu orv gdwrv (Hgdg, Shvr):"
-
 Ohhu Hgdg, Ohhu Shvr.
-
-Prvwudu "Wx shvr hv: ", shvr, ", Wx hgdg hv: ", hgdg.
-
+Prvwudu "Wx shvr hv: ", shvr, ",wx hgdg hv: ", hgdg.
 Ilq.
+
 */
