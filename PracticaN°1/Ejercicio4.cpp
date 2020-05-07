@@ -46,22 +46,26 @@ bool isWord(vector <char> cadena){
     }
 }
 void analizar(vector <char> cadena){
-    if(isIntNumber(cadena)==true){
-        cout<<endl;
-        cout<<"The string is an integer"<<endl;
+    if (cadena.size() != 0){
+        if(isIntNumber(cadena)==true){
+            cout<<endl;
+            cout<<"The string is an integer"<<endl;
+        }
+        else if(isEspecialChar(cadena)==true){
+            cout<<endl;
+            cout<<"The string is special character"<<endl;
+        }
+        else if(isWord(cadena)==true){
+            cout<<endl;
+            cout<<"The string is a word"<<endl;
+        }
+        else{
+            cout<<endl;
+            cout<<"The string is not an integer or a word or a special character"<<endl;
+        }
     }
-    else if(isEspecialChar(cadena)==true){
-        cout<<endl;
-        cout<<"The string is special character"<<endl;
-    }
-    else if(isWord(cadena)==true){
-        cout<<endl;
-        cout<<"The string is a word"<<endl;
-    }
-    else{
-        cout<<endl;
-        cout<<"The string is not an integer or a word or a special character"<<endl;
-    }
+    else
+        cout<<"The string doesn't exist"<<endl;
 }
 
 int main() {
@@ -95,17 +99,14 @@ int main() {
 }
 
 /*
-::::::::::::::archivo de texto plano::::::::::::::
+TEXTO PLANO
+::::::::::::::compilar.txt::::::::::::::
+
 Inicio
-
 Variables edad, peso.
-
 Mostrar "Escribir los datos (Edad, Peso):"
-
 Leer Edad, Leer Peso.
-
 Mostrar "Tu peso es: ", peso, ",tu edad es: ", edad.
-
 Fin.
 
 */
