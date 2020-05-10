@@ -49,10 +49,6 @@ void diagramaDeTransicion(vector <char> cad){
                         estado='e';
                         break;
                     }
-                    else{
-                       estado='e';
-                        break; 
-                    }
                 }
                 else{
                     break;
