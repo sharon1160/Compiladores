@@ -10,14 +10,12 @@ Term --> {printf("9")} 9
 */
 
 #include <stdio.h>
+#include  <stdlib.h>
 //#include <conio.h>
 #include <ctype.h>
 
-
-#define FIN -1
-
-char lexema[80];
 int tok;
+bool flag =false;
 
 void parea(int);
 void error();
@@ -25,54 +23,10 @@ void Resto();
 void Term();
 int scanner();
 
-int NUM(int tok){
-	switch (tok)
-	{
-		case 0:
-			return 0;
-			break;
-		case 1:
-			return 1;
-			break;
-		case 2:
-			return 2;
-			break;
-		case 3:
-			return 3;
-			break;
-		case 4:
-			return 4;
-			break;
-		case 5:
-			return 5;
-			break;
-		case 6:
-			return 6;
-			break;
-		case 7:
-			return 7;
-			break;
-		case 8:
-			return 8;
-			break;
-		case 9:
-			return 9;
-			break;
-		default:{
-			return -1;
-		 	break;
-		}
-	}
-}
-
 void Exp()
 {
-	if (tok==NUM(tok)){ 
-		Term();
-	    Resto(); 
-	}
-	else
-		error();
+	Term();
+	Resto(); 
 }
 
 void Resto()
@@ -89,15 +43,65 @@ void Resto()
 		printf("-");
 		Resto();
 	}
+	else if (isdigit(tok))
+	{
+		error();
+	}
 	else //cadena vacia
 		;
 }
 
 void Term()
 {
-	if (tok==NUM(tok)){ 
-		printf("%s",lexema);
-	    parea(NUM(tok)); 
+	if (tok== '0'){ 
+		printf("0");
+	    parea('0'); 
+		return;
+	}
+	else if (tok== '1'){ 
+		printf("1");
+	    parea('1'); 
+		return;
+	}
+	else if (tok== '2'){ 
+		printf("2");
+	    parea('2');
+		return; 
+	}
+	else if (tok== '3'){ 
+		printf("3");
+	    parea('3'); 
+		return;
+	}
+	else if (tok== '4'){ 
+		printf("4");
+	    parea('4'); 
+		return;
+	}
+	else if (tok== '5'){ 
+		printf("5");
+	    parea('5'); 
+		return;
+	}
+	else if (tok== '6'){ 
+		printf("6");
+	    parea('6'); 
+		return;
+	}
+	else if (tok== '7'){ 
+		printf("7");
+	    parea('7'); 
+		return;
+	}
+	else if (tok== '8'){ 
+		printf("8");
+	    parea('8'); 
+		return;
+	}
+	else if (tok== '9'){ 
+		printf("9");
+	    parea('9'); 
+		return;
 	}
 	else
 		error();
@@ -105,42 +109,21 @@ void Term()
 
 void error()
 {
-	printf("Error de sintaxis");
-	printf("\n");
+	printf("\nError de sintaxis\n");
+	exit (-1);
 }
 
 void parea(int t)
 {
 	if (tok==t)
-		tok=scanner();
+		tok=getchar();
 	else
 		error();
 }
 
-int scanner()
-{
-	int c,i;
-	do c=getchar(); while(c==' ');
-	if (c=='\n')
-		return FIN;
-	if (c=='+' || c=='-')
-		return c;
-	if(isdigit(c))
-	{
-		i=0;
-		do { 
-			lexema[i++]=c;
-			c=getchar();
-		}while(isdigit(c));
-			lexema[i]=0;
-			ungetc(c,stdin);
-			return NUM(tok);
-	}
-}
-
 int main()
 {
-	tok=scanner();
+	tok=getchar();
 	Exp();
 	printf("\n");
 	return 0;
