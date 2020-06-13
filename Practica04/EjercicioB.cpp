@@ -1,18 +1,19 @@
-/* Analizador sintáctico de infija a postfija
+/* Analizador Sintáctico de Infija a Postfija 
 Exp --> Term Resto
-Resto --> mas Term {printf("+")} Resto
-Resto --> menos Term {printf("-")} Resto
+Resto --> + Term {printf("+")} Resto
+Resto --> - Term {printf("-")} Resto
 Resto -->
-Term --> {printf(num.valor)} num
+Term --> {printf("0")} 0
+Term --> {printf("1")} 1
+...
+Term --> {printf("9")} 9
 */
 
 #include <stdio.h>
 //#include <conio.h>
 #include <ctype.h>
 
-#define MAS '+'
-#define MENOS '-'
-#define NUM 256
+
 #define FIN -1
 
 char lexema[80];
@@ -24,9 +25,49 @@ void Resto();
 void Term();
 int scanner();
 
+int NUM(int tok){
+	switch (tok)
+	{
+		case 0:
+			return 0;
+			break;
+		case 1:
+			return 1;
+			break;
+		case 2:
+			return 2;
+			break;
+		case 3:
+			return 3;
+			break;
+		case 4:
+			return 4;
+			break;
+		case 5:
+			return 5;
+			break;
+		case 6:
+			return 6;
+			break;
+		case 7:
+			return 7;
+			break;
+		case 8:
+			return 8;
+			break;
+		case 9:
+			return 9;
+			break;
+		default:{
+			return -1;
+		 	break;
+		}
+	}
+}
+
 void Exp()
 {
-	if (tok==NUM){ 
+	if (tok==NUM(tok)){ 
 		Term();
 	    Resto(); 
 	}
@@ -36,14 +77,14 @@ void Exp()
 
 void Resto()
 {
-	if (tok == MAS){
-		parea(MAS);
+	if (tok == '+'){
+		parea('+');
 		Term();
 		printf("+");
 		Resto();
 	}
-	else if (tok == MENOS){
-		parea(MENOS);
+	else if (tok == '-'){
+		parea('-');
 		Term();
 		printf("-");
 		Resto();
@@ -54,9 +95,9 @@ void Resto()
 
 void Term()
 {
-	if (tok==NUM){ 
+	if (tok==NUM(tok)){ 
 		printf("%s",lexema);
-	    parea(NUM); 
+	    parea(NUM(tok)); 
 	}
 	else
 		error();
@@ -82,7 +123,7 @@ int scanner()
 	do c=getchar(); while(c==' ');
 	if (c=='\n')
 		return FIN;
-	if (c==MAS || c==MENOS)
+	if (c=='+' || c=='-')
 		return c;
 	if(isdigit(c))
 	{
@@ -93,7 +134,7 @@ int scanner()
 		}while(isdigit(c));
 			lexema[i]=0;
 			ungetc(c,stdin);
-			return NUM;
+			return NUM(tok);
 	}
 }
 
