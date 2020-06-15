@@ -40,6 +40,27 @@ double evalPosFija( )
                     pila.pop(); 
                     pila.push(a-b); 
                     break;
+                case '*' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    b = pila.top();
+                    pila.pop(); 
+                    pila.push(a*b); 
+                    break;
+                case '/' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    b = pila.top();
+                    pila.pop(); 
+                    pila.push(b/a); 
+                    break;
+                case '^' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    b = pila.top();
+                    pila.pop(); 
+                    pila.push(exp(a*log(b)));
+                    break;
             }
         }
         cout<<"cadena?"<<endl;
@@ -48,9 +69,11 @@ double evalPosFija( )
     return pila.top();
 }
 
+
 int main()
 {
-
+    //si la expresion no es Posfija mostrara
+    //Segmentation fault
     cout<<"Resulado final : "<<evalPosFija()<<endl;
     return 0;
 }
