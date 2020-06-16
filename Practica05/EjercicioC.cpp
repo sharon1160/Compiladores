@@ -11,8 +11,16 @@
 #define FIN -1
 
 /* GRAMÁTICA  
+I : Inicio
+B : Bloque
+Fn : Fin
+PI : Parentesis Izquierdo
+PD : Parentesis Derecho
+p : Punto y coma
+e : suma y resta
+t : multiplicacion y division
 
-Prog  --> I B F
+Prog  --> I B Fn
 B --> E p b
 
 b --> B
@@ -39,7 +47,7 @@ PD --> {print )} )
 
 I --> {print Inicio} inicio
 
-F --> {print Fin}  fin
+Fn --> {print Fin}  fin
 */
 
 FILE *f;
