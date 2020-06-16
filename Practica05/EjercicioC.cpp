@@ -68,9 +68,9 @@ int scanner();
 void Prog()
 {
 	if (tok=='I'){ 
-        I();
-        B();
-        Fn();
+		I();
+		B();
+		Fn();
 	}
 	else
 		error();
@@ -80,8 +80,8 @@ void B()
 {
 	if (tok != ' '){
 		E();
-        p();
-        b();
+		p();
+		b();
 	}
 	else //cadena vacia
 		;
@@ -99,7 +99,7 @@ void b()
 void error()
 {
 	printf("\nError de sintaxis \n") ;
-    exit (-1) ;
+    	exit (-1) ;
 }
 
 void E(){
@@ -157,9 +157,7 @@ void F(){
         PD();
     }
     else
-    {
         error();
-    }
 }
 
 void p(){
@@ -170,7 +168,6 @@ void p(){
 }
 
 void PI(){
-    //printf("(");
     parea('(');
 }
 
@@ -205,10 +202,10 @@ int k=2;
 
 int scanner()
 {
-	int c,i;
-	do{
-        if(feof(f))
-			break;
+    int c,i;
+    do{
+	if(feof(f))
+	   break;
         c=fgetc(f);
     }while(c==' ' || c=='\n');
     if (c=='I')
@@ -218,7 +215,7 @@ int scanner()
     if (c=='n'){
         do {
             if(feof(f))
-			    break;
+		break;
             c=fgetc(f);
             if(j<6){
                 if(inicio[j]!=c)
@@ -241,38 +238,38 @@ int scanner()
             }
         }while(feof(f)!=true);
     }
-	if (c=='\n')
-		return FIN;
-	if (c==MAS || c==MENOS)
-		return c;
+    if (c=='\n')
+	return FIN;
+    if (c==MAS || c==MENOS)
+	return c;
     if (c=='*' || c=='/')
-		return c;
+	return c;
     if (c=='(' || c==')')
-		return c;
+	return c;
     if (c==';' )
-		return c;
-	if(isdigit(c)){
-		i=0;
-		do { 
-			lexema[i++]=c;
-            if(feof(f))
-			    break;
-			c=fgetc(f);
-		}while(isdigit(c));
-			lexema[i]=0;
-			ungetc(c,f);
-			return NUM;
-	}
+	return c;
+    if(isdigit(c)){
+	i=0;
+	do { 
+	    lexema[i++]=c;
+	    if(feof(f))
+	       break;
+	    c=fgetc(f);
+	}while(isdigit(c));
+	lexema[i]=0;
+	ungetc(c,f);
+	return NUM;
+    }
 }
 
 int main()
 {
     f=fopen("programa1.txt","rt");
     if(!f)
-		printf("Error al abrir el archivo\n");
-	tok=scanner();
-	Prog();
-	printf("\n");
+         printf("Error al abrir el archivo\n");
+    tok=scanner();
+    Prog();
+    printf("\n");
     fclose(f);
-	return 0;
+    return 0;
 }
