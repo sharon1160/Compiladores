@@ -4,11 +4,84 @@
 #include <string>
 #include <iostream>
 #include<stdlib.h>
+#include <stack>
+#include <cmath>
+#include <cstdlib> 
+#include <string>
 
 #define MAS '+'
 #define MENOS '-'
 #define NUM 256
 #define FIN -1
+
+using namespace std;
+
+stack<double> pila;
+string cad;
+double a, bi, result;
+
+double evalPosFija(string cad)
+{
+    if (cad != ";")
+    {
+        result = atof(cad.c_str());
+        if (result >0.0 ){
+            pila.push(result);
+        }
+        else if (cad == "0.0"){
+            pila.push(result);
+        }
+        else if(cad =="+" || cad =="-" ||  cad =="*" || cad =="7" ){
+             switch (cad[0])
+            {
+                case '+' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    bi = pila.top();
+                    pila.pop(); 
+                    pila.push(a+bi); 
+                    break;
+                case '-' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    bi = pila.top();
+                    pila.pop(); 
+                    pila.push(bi-a); 
+                    break;
+                case '*' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    bi = pila.top();
+                    pila.pop(); 
+                    pila.push(a*bi); 
+                    break;
+                case '/' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    bi = pila.top();
+                    pila.pop(); 
+                    pila.push(bi/a); 
+                    break;
+                case '^' : 
+                    a = pila.top(); 
+                    pila.pop(); 
+                    bi = pila.top();
+                    pila.pop(); 
+                    pila.push(exp(a*log(bi)));
+                    break;
+            }
+        }
+    }
+    else{
+        cout<<"RESULTADO : "<< pila.top()<<endl;
+        while (!pila.empty())
+        {
+            pila.pop();
+        }
+        result=0.0;
+    }
+}
+
 
 /* GRAMÁTICA  
 I : Inicio
@@ -19,34 +92,24 @@ PD : Parentesis Derecho
 p : Punto y coma
 e : suma y resta
 t : multiplicacion y division
-
 Prog  --> I B Fn
 B --> E p b
-
 b --> B
 b -->
 E --> T e
-
 e --> + T {print +} e
 e --> - T {print -} e
 e --> 
-
 T --> F t
-
 t --> * F {print *} t
 t --> / F {print /} t
 t --> 
-
 F --> PI E PD
 F -->  {print num} numero
-
 p --> {print ;} ;
-
 PI --> {print (} (
 PD --> {print )} )
-
 I --> {print Inicio} inicio
-
 Fn --> {print Fin}  fin
 */
 
@@ -120,12 +183,14 @@ void e(){
         parea(MAS);
         T();
         printf("+");
+        evalPosFija("+");
         e();
     }
     else if(tok == MENOS){
         parea(MENOS);
         T();
         printf("-");
+        evalPosFija("-");
         e();
     }
     else //cadena vacia
@@ -142,21 +207,32 @@ void t(){
         parea('*');
         F();
         printf("*");
+        evalPosFija("*");
         t();
     }
     else if(tok == '/'){
         parea('/');
         F();
         printf("/");
+        evalPosFija("/");
         t();
     }
     else //cadena vacia
         ;
 }
+string c;
+int i;
 
 void F(){
     if (tok==NUM){
         printf("%s",lexema);
+        i=0;
+        c="";
+        while(lexema[i]!='\0'){
+            c=c+lexema[i];
+            i++;
+        }
+        evalPosFija(c);
         parea(NUM); 
     }
     else if (tok=='('){
@@ -170,6 +246,7 @@ void F(){
 
 void p(){
     printf(";\n");
+    evalPosFija(";");
     parea(';');
     if(tok!='F')
         printf("\t");
