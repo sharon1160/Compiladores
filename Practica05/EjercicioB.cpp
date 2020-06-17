@@ -6,24 +6,22 @@
 
 using namespace std;
 
-double evalPosFija( )
+stack<double> pila;
+string cad;
+double a, b, result;
+
+double evalPosFija(string cad)
 {
-    stack<double> pila;
-    string cad;
-    double a, b, result;
-    cout<<endl;
-    cout<<"cadena ?"<<endl;
-    cin>> cad;
-    while (cad[0] != '=')
+    if (cad != ";")
     {
         result = atof(cad.c_str());
-        if (result != 0.0 ){
+        if (result >0.0 ){
             pila.push(result);
         }
         else if (cad == "0.0"){
             pila.push(result);
         }
-        else{
+        else if(cad =="+" || cad =="-" ||  cad =="*" || cad =="/" ){
              switch (cad[0])
             {
                 case '+' : 
@@ -38,7 +36,7 @@ double evalPosFija( )
                     pila.pop(); 
                     b = pila.top();
                     pila.pop(); 
-                    pila.push(a-b); 
+                    pila.push(b-a); 
                     break;
                 case '*' : 
                     a = pila.top(); 
@@ -63,10 +61,17 @@ double evalPosFija( )
                     break;
             }
         }
-        cout<<"cadena?"<<endl;
-        cin>> cad;
+
     }
-    return pila.top();
+    else{
+        cout<<"RESPUESTA "<< pila.top()<<endl;
+        while (!pila.empty())
+        {
+            pila.pop();
+        }
+        result=0.0;
+    }
+    
 }
 
 
@@ -74,6 +79,16 @@ int main()
 {
     //si la expresion no es Posfija mostrara
     //Segmentation fault
-    cout<<"Resulado final : "<<evalPosFija()<<endl;
+    evalPosFija("8");
+    evalPosFija("12");
+    evalPosFija("+");
+    evalPosFija("5");
+    evalPosFija("2");
+    evalPosFija("-");
+    evalPosFija("-");
+    evalPosFija("2");
+    evalPosFija("*");
+    evalPosFija(";");
+    
     return 0;
 }
