@@ -31,7 +31,7 @@ double evalPosFija(string cad)
         else if (cad == "0.0"){
             pila.push(result);
         }
-        else if(cad =="+" || cad =="-" ||  cad =="*" || cad =="7" ){
+        else if(cad =="+" || cad =="-" ||  cad =="*" || cad =="/" ){
              switch (cad[0])
             {
                 case '+' : 
