@@ -14,16 +14,16 @@ struct Estado{
     bool Esta_marcado=false;
 	bool Es_Aceptacion=false;
     int num;//numero del estado
-	Estado(int numero,bool acept){
+    Estado(int numero,bool acept){
 		num = numero;
 		Es_Aceptacion = acept;
 		Esta_marcado = false;
-	}
+    }
     Estado(int numero){
 		num = numero;
 		Es_Aceptacion = false;
 		Esta_marcado = false;
-	}
+    }
 };
 
 struct Transicion{
@@ -39,29 +39,29 @@ struct Transicion{
 
 class Automata
 {
-    //Lista de Entradas,Lista de Estados,Lista de transiciones
+    	//Lista de Entradas,Lista de Estados,Lista de transiciones
 	vector<string> Entradas;vector<Estado> Estados;vector<Transicion> Transiciones;
 public:
 
 	Automata();
-    //constructor
+    	//constructor
 	void Estado_Nuevo(int n);//metodo para crear estado
 	void Entrada_Nueva(string ent){Entradas.push_back(ent);}
 	void TransNueva(int start,int end, string cad);
 	void Estados_acept(int n);
-    //metodos para mostrar
+    	//metodos para mostrar
 	void MostrarEstados();
 	void MostrarSubestados();
 	void MostrarTrans();
 	void MostrarEstadosAcep();
-    //
+   	//
 	int nEstados(){//cantidad de estados
-        return Estados.size();
-    }
+        	return Estados.size();
+   	 }
 	int nTrans(){//cantidad de transiciones
-        return Transiciones.size();
-    }
-    //existencia del estado
+        	return Transiciones.size();
+    	}
+    	//existencia del estado
 	vector<int> eClausu(vector<int> &vect);
 	bool EstadoExistente(vector<int> &vect){
 		for(int i=0;i<Estados.size();i++){
@@ -70,7 +70,7 @@ public:
 		}
 		return false;
 	}
-    //estados marcados
+    	//estados marcados
 	bool Estados_marcados(){
 		for(int i=0;i<Estados.size();i++){
 			if(Estados[i].Esta_marcado==false)
@@ -260,7 +260,7 @@ Automata* Automata::AFD()
 	Automata* AF_deter=new Automata();
 	AF_deter->Estado_Nuevo(0);
 	int estado_act=0;
-    int nomEstado=1;
+    	int nomEstado=1;
 	vector<int> vec;
     vector<int> vec2;
 
@@ -307,16 +307,16 @@ Automata* Automata::AFD()
 
 int main(int argc, char const *argv[])
 {
-    /*Para compilar
+    	/*Para compilar
 
         g++ AFN_to_AFD.cpp -o AFN_to_AFD.out
         ./AFN_to_AFD.out > out.txt
-    */
+    	*/
 	Automata* AF_NoDeter=new Automata();	
 	iniciar(AF_NoDeter);//inicializamos el automata no
-    //                  //determinista
+    	//                  //determinista
 	Automata* AF_deter=AF_NoDeter->AFD();
-    //
+    	//
 	AF_deter->MostrarSubestados();
 	AF_deter->MostrarEstadosAcep();
 	AF_deter->MostrarTrans();
