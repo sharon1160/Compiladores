@@ -1,0 +1,4 @@
+#ignorar archivos compilados
+*.out
+*.txt
+!Practica07/resultado.txt
